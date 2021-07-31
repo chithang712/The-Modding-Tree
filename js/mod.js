@@ -1,12 +1,12 @@
 let modInfo = {
-	name: "The ??? Tree",
-	id: "mymod",
-	author: "nobody",
-	pointsName: "points",
+	name: "The Naomi Iwata Tree",
+	id: "NIdle",
+	author: "Blushy",
+	pointsName: "Ideas",
+	modFiles: ["tree.js", "layers/Socialmedia.js", "layers/story.js"],
 	discordName: "",
 	discordLink: "",
 	initialStartPoints: new Decimal (10), // Used for hard resets and new players
-	
 	offlineLimit: 1,  // In hours
 }
 
