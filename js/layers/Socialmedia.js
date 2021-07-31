@@ -15,6 +15,7 @@ addLayer("SM", {
     exponent: 0.5, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
+        if (hasUpgrade('SM', 12)) mult = mult.times(2)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -24,18 +25,50 @@ addLayer("SM", {
     upgrades: {
         11: {
             title: "Watch Naomi Iwata media",
-            description: "Gain 1 more idea per second.",
+            description: "Gain 5 ideas per second.",
             cost() {
                 return new Decimal(1)
             },
             effect() {
-                return new Decimal(2)
+                return new Decimal(5)
             },
             effectDisplay() {
                 return format(upgradeEffect(this.layer, this.id))+"/s"
             },
             unlocked() {
                 return true
+            },
+        },
+        12: {
+            title: "Expertized Posting",
+            description: "Ideas required for posting is halved",
+            cost() {
+                return new Decimal(5)
+            },
+            effect() {
+                return new Decimal(0.5)
+            },
+            effectDisplay() {
+                return format(upgradeEffect(this.layer, this.id))+"/s"
+            },
+            unlocked() {
+                return hasUpgrade('SM', 11)
+            },
+        },
+        13: {
+            title: "Make some Fan Characters",
+            description: "Idea gain is multiplied by the number of Social Media upgrades bought times 5.",
+            cost() {
+                return new Decimal(10)
+            },
+            effect() {
+                return new Decimal(player.SM.upgrades.length).times(5)
+            },
+            effectDisplay() {
+                return format(upgradeEffect(this.layer, this.id))+"/s"
+            },
+            unlocked() {
+                return hasUpgrade('SM', 12)
             },
         },
     },
