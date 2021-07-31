@@ -26,7 +26,6 @@ addLayer("story", {
                 "blank",
                 ["infobox", "one"],
                 ["infobox", "two"],
-                ["infobox", "three"],
             ],
         },
     },
@@ -49,17 +48,7 @@ addLayer("story", {
                 return text
             },
             unlocked() {
-                return hasUpgrade('money', 11)
-            },
-        },
-        three: {
-            title: "Continuation Possible?",
-            body() {
-                let text = "Thinking that money could solve anything, you opened your favorite IDE and started making a site for a company aimed for the Naomi Iwata cartoons' re-debuts. The creation of the new funding site needed hours of work, but you thought that it was a great step towards the re-debut of multiple Naomi Iwata media. It could also be a chance for you to be more recognized by the world. You were so tired that you immediately went to sleep with feelings of satisfaction, sadness and uncertainty combined."
-                return text
-            },
-            unlocked() {
-                return hasUpgrade('money', 13)
+                return hasUpgrade('SM', 11)
             },
         },
     },
