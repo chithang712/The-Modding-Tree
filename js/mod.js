@@ -3,7 +3,7 @@ let modInfo = {
 	id: "NIdle",
 	author: "Blushy",
 	pointsName: "Ideas",
-	modFiles: ["tree.js", "layers/Socialmedia.js", "layers/story.js"],
+	modFiles: ["tree.js", "layers/Socialmedia.js", "layers/story.js", "layers/Fans.js"],
 	discordName: "",
 	discordLink: "",
 	initialStartPoints: new Decimal (10), // Used for hard resets and new players
@@ -12,14 +12,16 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.1",
+	num: "0.2",
 	name: "Naomi Iwata forever",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.1</h3><br>
 		- Started Development.<br>
-		- Added first layer and story layer.`
+		- Added first layer and story layer.<br>
+	<h3>v0.2</h3><br>
+		- Added Fans layer.`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -44,6 +46,7 @@ function getPointGen() {
 	let gain = new Decimal(1)
 	if (hasUpgrade('SM', 11)) gain = gain.times(5)
 	if (hasUpgrade('SM', 13)) gain = gain.times(upgradeEffect('SM', 13))
+	if (hasUpgrade('SM', 14)) gain = gain.times(player.SM.points)
 	return gain
 }
 

@@ -62,6 +62,16 @@ addLayer("story", {
                 return hasUpgrade('SM', 13)
             },
         },
+        four: {
+            title: "Continuation possible?",
+            body() {
+                let text = "You decided to check the comments on one of your posts. One of them said that your ideas are so faithful to the original animes that you should start a company and redebut the Naomi Iwata media. This, along with your belief that money can solve everything, makes you open your favorite IDE and started making a site for funding a company aimed for Naomi Iwata media re-debuts. The creation of the new funding site needed hours of work, but you thought that it was a great step towards the re-debut of Multiple Naomi Iwata media. It could also be a chance for you to be more recognized by the world. You were so tired that you immediately went to sleep with feelings of satisfaction, sadness and uncertainty combined."
+                return text
+            },
+            unlocked() {
+                return player.F.unlocked
+            },
+        },
     },
     tooltip() {
         return "Story"

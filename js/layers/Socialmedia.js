@@ -16,6 +16,7 @@ addLayer("SM", {
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         if (hasUpgrade('SM', 12)) mult = mult.times(2)
+        if (player.F.unlocked) mult = mult.times((player.F.points).times(player.F.points))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -69,6 +70,22 @@ addLayer("SM", {
             },
             unlocked() {
                 return hasUpgrade('SM', 12)
+            },
+        },
+        14: {
+            title: "Learn from your posts",
+            description: "Posts boost idea gain.",
+            cost() {
+                return new Decimal(20)
+            },
+            effect() {
+                return upgradeEffect('SM', 13).times(player[this.layer].points)
+            },
+            effectDisplay() {
+                return format(upgradeEffect(this.layer, this.id))+"/s"
+            },
+            unlocked() {
+                return hasUpgrade('SM', 13)
             },
         },
     },
