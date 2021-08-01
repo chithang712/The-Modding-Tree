@@ -57,12 +57,12 @@ addLayer("SM", {
         },
         13: {
             title: "Make some Fan Characters",
-            description: "Idea gain is multiplied by the number of Social Media upgrades bought times 5.",
+            description: "Idea gain is multiplied by the number of Social Media upgrades bought.",
             cost() {
                 return new Decimal(10)
             },
             effect() {
-                return new Decimal(player.SM.upgrades.length).times(5)
+                return new Decimal(player.SM.upgrades.length)
             },
             effectDisplay() {
                 return format(upgradeEffect(this.layer, this.id))+"/s"
