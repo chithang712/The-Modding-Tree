@@ -46,7 +46,7 @@ function getPointGen() {
 	let gain = new Decimal(1)
 	if (hasUpgrade('SM', 11)) gain = gain.times(5)
 	if (hasUpgrade('SM', 13)) gain = gain.times(upgradeEffect('SM', 13))
-	if (hasUpgrade('SM', 14)) gain = gain.times(player.SM.points)
+	if (hasUpgrade('SM', 14)) gain = gain.times((player.SM.points).add(1))
 	return gain
 }
 

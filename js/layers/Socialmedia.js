@@ -16,7 +16,7 @@ addLayer("SM", {
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         if (hasUpgrade('SM', 12)) mult = mult.times(2)
-        if (player.F.unlocked) mult = mult.times((player.F.points).times(player.F.points))
+        if (player.F.unlocked) mult = mult.times((player.F.points).times(player.F.points).add(1))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -50,7 +50,7 @@ addLayer("SM", {
                 return new Decimal(0.5)
             },
             effectDisplay() {
-                return format(upgradeEffect(this.layer, this.id))+"/s"
+                return format(upgradeEffect(this.layer, this.id))+"x"
             },
             unlocked() {
                 return hasUpgrade('SM', 11)
@@ -79,7 +79,7 @@ addLayer("SM", {
                 return new Decimal(20)
             },
             effect() {
-                return upgradeEffect('SM', 13).times(player[this.layer].points)
+                return upgradeEffect('SM', 13).times((player[this.layer].points).add(1))
             },
             effectDisplay() {
                 return format(upgradeEffect(this.layer, this.id))+"/s"
@@ -92,5 +92,9 @@ addLayer("SM", {
     hotkeys: [
         {key: "S", description: "S: Reset for Posts", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    layerShown(){return true}
+    layerShown(){return true},
+    passiveGeneration() {return hasUpgrade('F', 11) ? 1 : 0},
+    doReset(resettingLayer){ // Triggers when this layer is being reset, along with the layer doing the resetting. Not triggered by lower layers resetting, but is by layers on the same row.
+        if(layers[resettingLayer].row > this.row && hasUpgrade('F', 12)) layerDataReset(this.layer, ["upgrades"]) 
+    },
 })
